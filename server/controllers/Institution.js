@@ -24,7 +24,7 @@ exports.CreateRoomsData = async (req, res) => {
             data: { room, user },
         });
     } catch (err) {
-        console.error(err);
+        console.error(err.message);
         return res.status(500).json({
             success: false,
             message: "Internal server error in CreateRoomsData function",
