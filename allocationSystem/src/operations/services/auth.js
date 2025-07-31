@@ -12,7 +12,9 @@ export const SendOtp=(data,navigate)=>{
             }
 
             toast.success("OTp sent SuccessFully");
-            navigate("/verify")
+            if(navigate){
+                navigate("/verify")
+            }
         }
         catch(err){
             toast.error(err?.response?.data?.message || err.message);

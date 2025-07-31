@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import OTPInput from 'react-otp-input';
-import { ArrowLeft, RefreshCw } from 'lucide-react';
+import { ArrowLeft, RefreshCw, Send } from 'lucide-react';
 import {useSelector,useDispatch} from "react-redux"
 import { useNavigate } from 'react-router-dom';
-import { SignUp } from '../operations/services/auth';
+import { SignUp ,SendOtp} from '../operations/services/auth';
 const OtpSection = () => {
   const [otp, setOtp] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -25,13 +25,17 @@ const navigate=useNavigate();
   };
 
   const ResendOtp = async () => {
-   
+    dispatch(SendOtp(formdata));
   };
 
   const handleBack = () => {
     navigate("/login")
   };
-
+  useEffect(()=>{
+    if(!formdata){
+      navigate("/SignUp")
+    }
+  },[])
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-200">
       <div className="flex flex-col gap-5 rounded-lg bg-white shadow-lg p-4 border-gray-400 border-[1px]">
